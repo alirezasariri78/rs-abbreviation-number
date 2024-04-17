@@ -5,10 +5,19 @@ fn abbreviate_number(num:f64)->String{
     let base:f64=1000.0;
     let mut number=num ;
     let index_of_symbol= num.abs().log(base).floor() as usize;
-    let symbol = *SYMBOLS.get(index_of_symbol) .unwrap();
-    let pw=base.powf(index_of_symbol as f64);
+    let symbol = *SYMBOLS.get(index_of_symbol).unwrap();
+    let pw: f64=base.powf(index_of_symbol as f64);
     number /= pw; 
-    format!("{:.2}{}", number, symbol)  
+
+    if ((number*100.0) as i64 % 100)==0{
+        return  format!("{:.0}{}", number, symbol);
+    }
+    if (number*100.0) as i64 % 10==0{
+        return  format!("{:.1}{}", number, symbol);
+    }
+
+    println!("{number}");
+    format!("{}{}", (number*100.0).round()/100.0, symbol)  
 }
 
 mod tests{
