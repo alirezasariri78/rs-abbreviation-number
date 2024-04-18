@@ -10,6 +10,15 @@ Abbreviate or Unabbreviate numbers in rust
 | -123_000_000_000_000_000_000 |     -123E     |
 
 
+
+|     Input                   |    Output    |
+|-----------------------------|--------------|
+|         1K               |     1000       |
+|         1.09K           |     1090      |
+|         1_090               |     1.09K    |
+|      123E     |123_000_000_000_000_000_000|
+
+
 Usage Example :
 
 1. Use As A Extension : 
