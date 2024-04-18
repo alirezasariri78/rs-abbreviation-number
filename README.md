@@ -48,9 +48,9 @@ fn main() {
 
 ```
 ## Note
-       1. Symbols Are Case-insensitive \n
-       2. Program Will Automaticly Remove Leading Zero \n
-       Example: \n
+        . Symbols Are Case-insensitive 
+        . Program Will Automaticly Remove Leading Zero 
+        .Example: 
            001 --->1
            1.90 --->1.9
 
