@@ -14,43 +14,43 @@ pub trait NumericUnAbbreviate {
 
 impl NumericAbbreviate for f64 {
     fn abbreviate_number(&self) -> String {
-        abbreviate_number(*self)
+        handle_abbreviation(*self)
     }
 }
 
 impl NumericAbbreviate for f32 {
     fn abbreviate_number(&self) -> String {
-        abbreviate_number(*self as f64)
+        handle_abbreviation(*self as f64)
     }
 }
 
 impl NumericAbbreviate for i128 {
     fn abbreviate_number(&self) -> String {
-        abbreviate_number(*self as f64)
+        handle_abbreviation(*self as f64)
     }
 }
 
 impl NumericAbbreviate for i64 {
     fn abbreviate_number(&self) -> String {
-        abbreviate_number(*self as f64)
+        handle_abbreviation(*self as f64)
     }
 }
 
 impl NumericAbbreviate for i32 {
     fn abbreviate_number(&self) -> String {
-        abbreviate_number(*self as f64)
+        handle_abbreviation(*self as f64)
     }
 }
 
 impl NumericAbbreviate for i16 {
     fn abbreviate_number(&self) -> String {
-        abbreviate_number(*self as f64)
+        handle_abbreviation(*self as f64)
     }
 }
 
 impl NumericAbbreviate for i8 {
     fn abbreviate_number(&self) -> String {
-        abbreviate_number(*self as f64)
+        handle_abbreviation(*self as f64)
     }
 }
 
@@ -63,6 +63,14 @@ impl NumericUnAbbreviate for String {
 impl NumericUnAbbreviate for &str {
     fn unabbreviate_number(&self) -> f64 {
         unabbreviate_number(self)
+    }
+}
+
+fn handle_abbreviation(number: f64) -> String {
+    if number > 1.0 {
+        abbreviate_number(number)
+    } else {
+        abbreviate_fraction_number(number)
     }
 }
 
@@ -104,6 +112,25 @@ fn unabbreviate_number(number: &str) -> f64 {
         }
         None => return trimed_num.parse::<f64>().unwrap_or(0.0),
     }
+}
+
+fn abbreviate_fraction_number(num: f64) -> String {
+    let mut number = num;
+    let mut ten_th_counter = 0;
+    const THOUSAND: f64 = 1000.0;
+    while number < 1.0 {
+        number *= 10.0;
+        ten_th_counter += 1;
+    }
+
+    let thousand_raise: f64 = (ten_th_counter as f64 / 3.0).ceil();
+    let mut symbol_index = FRACTION_COUNT as f64 - thousand_raise;
+    if symbol_index < 0.0 {
+        symbol_index = 0.0;
+    }
+    let symbol = *SYMBOLS.get(symbol_index as usize).unwrap_or(&"");
+    let result = (num * THOUSAND.powf(thousand_raise)) as i128;
+    format!("{result}{symbol}")
 }
 
 fn remove_floating_zero(number: f64) -> String {
