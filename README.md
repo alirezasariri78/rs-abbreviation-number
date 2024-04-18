@@ -1,6 +1,6 @@
 Abbreviate or Unabbreviate numbers in rust
 
-#Numbers Less Then 1
+## For Numbers Less Then 1
 |     Input                   |    Output    |
 |-----------------------------|--------------|
 |         0.1           |     100m       |
@@ -10,7 +10,7 @@ Abbreviate or Unabbreviate numbers in rust
 |         0.000_000_000_000_000_000_000_000_000_1           |     100q       |
 
 
-#Numbers Greater Then 1
+## For Numbers Greater Then 1
 |     Input                   |    Output    |
 |-----------------------------|--------------|
 |         1_000               |     1K       |
