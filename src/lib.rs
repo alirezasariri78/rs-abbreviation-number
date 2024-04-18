@@ -1,4 +1,8 @@
-const SYMBOLS: [&str; 11] = ["", "K", "M", "G", "T", "P", "E", "Z", "Y", "R", "Q"];
+const SYMBOLS: [&str; 21] = [
+    "q", "r", "y", "z", "a", "f", "p", "n", "μ", "m", "", "K", "M", "G", "T", "P", "E", "Z", "Y",
+    "R", "Q",
+];
+const FRACTION_COUNT: usize = 10;
 
 pub trait NumericAbbreviate {
     fn abbreviate_number(&self) -> String;
@@ -66,12 +70,12 @@ fn abbreviate_number(num: f64) -> String {
     let base: f64 = 1000.0;
     let mut number = num;
     let max_legal_index = SYMBOLS.len() - 1;
-    let mut index_of_symbol = num.abs().log(base).floor() as usize;
+    let mut index_of_symbol = num.abs().log(base).floor() as usize + FRACTION_COUNT;
     if index_of_symbol > max_legal_index {
         index_of_symbol = max_legal_index
     }
     let symbol = *SYMBOLS.get(index_of_symbol).unwrap();
-    let pw: f64 = base.powf(index_of_symbol as f64);
+    let pw: f64 = base.powf((index_of_symbol - FRACTION_COUNT) as f64);
     number /= pw;
     format!("{}{}", remove_floating_zero(number), symbol)
 }
@@ -88,13 +92,14 @@ fn unabbreviate_number(number: &str) -> f64 {
             }
             let symbol_index = SYMBOLS
                 .into_iter()
-                .position(|c| c.to_lowercase() == symbol.to_lowercase().to_string())
-                .unwrap_or(0);
+                .position(|c| c == symbol.to_string())
+                .unwrap_or(FRACTION_COUNT);
 
+            println!("{symbol_index}");
             let num: String = chars.clone().into_iter().take(chars.count() - 1).collect();
             let parsed_num = num.parse().unwrap_or(0.0);
             let base: f64 = 1000.0;
-            let z: f64 = base.powf(symbol_index as f64);
+            let z: f64 = base.powf((symbol_index - FRACTION_COUNT) as f64);
             return parsed_num * z;
         }
         None => return trimed_num.parse::<f64>().unwrap_or(0.0),
@@ -121,8 +126,8 @@ mod abbreviate_tests {
     use super::*;
     #[test]
     fn abbreviate_number_less_then_thousand_test() {
-        assert_eq!("1", abbreviate_number(1.0));
-        assert_eq!("0", abbreviate_number(0.0));
+        assert_eq!("1", 1.abbreviate_number());
+        assert_eq!("0", 0.abbreviate_number());
         assert_eq!("123", abbreviate_number(123.0));
     }
 
@@ -293,19 +298,19 @@ mod unabbreviate_tests {
         assert_eq!(-1_010_000.0, unabbreviate_number("-1.01M"));
 
         assert_eq!(-101.0, "-101".unabbreviate_number());
-        assert_eq!(-1000.0, "-1k".unabbreviate_number());
+        assert_eq!(-1000.0, "-1K".unabbreviate_number());
         assert_eq!(-1_010_000.0, "-1.01M".unabbreviate_number());
     }
 
-    #[test]
-    fn unabbreviate_number_symbol_lower_test() {
-        assert_eq!(5_100.0, unabbreviate_number("5.1k"));
-        assert_eq!(5_100_000.0, unabbreviate_number("5.1m"));
-        assert_eq!(5_100_000_000.0, unabbreviate_number("5.1g"));
-        assert_eq!(5_100_000_000_000.0, unabbreviate_number("5.1t"));
-        assert_eq!(5_100_000_000_000_000.0, unabbreviate_number("5.1p"));
-        assert_eq!(5_000_000_000_000_000_000.0, unabbreviate_number("5.0e"));
-    }
+    // #[test]
+    // fn unabbreviate_number_symbol_lower_test() {
+    //     assert_eq!(5_100.0, unabbreviate_number("5.1k"));
+    //     assert_eq!(5_100_000.0, unabbreviate_number("5.1m"));
+    //     assert_eq!(5_100_000_000.0, unabbreviate_number("5.1g"));
+    //     assert_eq!(5_100_000_000_000.0, unabbreviate_number("5.1t"));
+    //     assert_eq!(5_100_000_000_000_000.0, unabbreviate_number("5.1p"));
+    //     assert_eq!(5_000_000_000_000_000_000.0, unabbreviate_number("5.0e"));
+    // }
 
     #[test]
     fn unabbreviate_number_exception_test() {
