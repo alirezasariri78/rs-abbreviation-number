@@ -39,6 +39,16 @@ fn main() {
 
 ```
 
+Also For Big Int Numbers: 
+```rust
+fn main() {
+    let big_num: i128 = 999_509_999_999_999_000_123_123_000_000_123;
+    println!("{}", big_num.abbreviate_number());
+}
+
+```
+
+
 Table Of Symbols:
 
 |     Symbol                   |    Base    |
