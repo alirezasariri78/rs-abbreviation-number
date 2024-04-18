@@ -39,6 +39,22 @@ fn main() {
 
 ```
 
+Also For Big Int Numbers: 
+```rust
+fn main() {
+    let big_num: i128 = 999_509_999_999_999_000_123_123_000_000_123;
+    println!("{}", big_num.abbreviate_number()); // result : 999.5Q
+}
+
+```
+## Note
+        . Symbols Are Case-insensitive 
+        . Program Will Automaticly Remove Leading Zero 
+        .Example: 
+           001 --->1
+           1.90 --->1.9
+
+
 Table Of Symbols:
 
 |     Symbol                   |    Base    |
