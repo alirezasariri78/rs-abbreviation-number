@@ -67,7 +67,7 @@ fn main() {
 ```
 
 
-#Note:
+## Note:
 Symbols Are Case-Sensitive And
 Program Will Automaticly Remove Leading Zero (001 Will Become 1 and etc)
 
