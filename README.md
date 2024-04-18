@@ -48,12 +48,12 @@ fn main() {
 
 ```
 ## Note
-        . Symbols Are Case-insensitive 
+        . Symbols Are Case-Sensitive 
         . Program Will Automaticly Remove Leading Zero 
-        .Example: 
-           001 --->1
-           1.90 --->1.9
-
+              Example: 
+                   001 --->1
+                   1.90 --->1.9
+    
 
 Table Of Symbols:
 
