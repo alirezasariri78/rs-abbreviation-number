@@ -2,6 +2,17 @@
 mod abbreviate_tests {
 
     use rs_abbreviation_number::*;
+
+    #[test]
+    fn mix_floating_test() {
+        assert_eq!("1.43K", 1435.549.abbreviate_number());
+    }
+
+    #[test]
+    fn mix_negative_floating_test() {
+        assert_eq!("-1.43K", (-1435.549).abbreviate_number());
+    }
+
     #[test]
     fn abbreviate_number_less_then_thousand_test() {
         assert_eq!("1", 1.abbreviate_number());
