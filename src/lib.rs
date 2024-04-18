@@ -315,4 +315,16 @@ mod unabbreviate_tests {
         assert_eq!(0.0, unabbreviate_number("incalid chars"));
         assert_eq!(1_010.0, unabbreviate_number("001.01K"));
     }
+
+    #[test]
+    fn unabbreviate_big_number_test() {
+        assert_eq!(
+            999_000_000_000_000_000_000_000_000_000_000.0,
+            unabbreviate_number("999Q")
+        );
+        assert_eq!(
+            999_500_000_000_000_000_000_000_000_000_000.0,
+            unabbreviate_number("999.5Q")
+        );
+    }
 }
