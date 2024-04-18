@@ -1,4 +1,4 @@
-Abbreviate or Unabbreviate numbers in rust
+## **Abbreviate or Unabbreviate numbers in rust**
 
 ## For Numbers Less Then 1
 |     Input                   |    Output    |
@@ -50,6 +50,8 @@ fn main() {
     println!("{}", (0.1).abbreviate_number()); // result: 100m
     println!("{}",(0.000_000_001).abbreviate_number()); //result: 1n
 
+    println!("{}", "111z".unabbreviate_number()); // result : 0.000000000000000000111
+    println!("{}", "100n".unabbreviate_number()); // result : 0.0000001
 
 }
 
@@ -63,12 +65,13 @@ fn main() {
 }
 
 ```
-## Note
-        . Symbols Are Case-Sensitive 
-        . Program Will Automaticly Remove Leading Zero (001 Will Become 1 and etc)
-        .
-            
-    
+
+
+## Note:
+Symbols Are Case-Sensitive And
+Program Will Automaticly Remove Leading Zero (001 Will Become 1 and etc)
+
+
 
 ## Table Of Metric Prefix:
 
