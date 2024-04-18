@@ -1,9 +1,7 @@
-use rs_abbreviation_number::*;
-
 #[cfg(test)]
 mod abbreviate_tests {
 
-    use super::*;
+    use rs_abbreviation_number::*;
     #[test]
     fn abbreviate_number_less_then_thousand_test() {
         assert_eq!("1", 1.abbreviate_number());
@@ -77,7 +75,7 @@ mod abbreviate_tests {
 
 mod integer_abbreviate_tests {
 
-    use super::*;
+    use rs_abbreviation_number::*;
     #[test]
     fn abbreviate_inumber_less_then_thousand_test() {
         assert_eq!("1", 1.abbreviate_number());

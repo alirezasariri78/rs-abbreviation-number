@@ -1,9 +1,7 @@
-use rs_abbreviation_number::*;
-
 #[cfg(test)]
 mod unabbreviate_tests {
 
-    use super::*;
+    use rs_abbreviation_number::*;
 
     #[test]
     fn unabbreviate_number_less_then_thousand_test() {

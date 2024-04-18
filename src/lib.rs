@@ -67,7 +67,7 @@ impl NumericUnAbbreviate for &str {
 }
 
 fn handle_abbreviation(number: f64) -> String {
-    if number > 1.0 {
+    if number.abs() >= 1.0 || number == 0.0 {
         abbreviate_number(number)
     } else {
         abbreviate_fraction_number(number)
@@ -115,7 +115,7 @@ fn unabbreviate_number(number: &str) -> f64 {
 }
 
 fn abbreviate_fraction_number(num: f64) -> String {
-    let mut number = num;
+    let mut number = num.abs();
     let mut ten_th_counter = 0;
     const THOUSAND: f64 = 1000.0;
     while number < 1.0 {
@@ -124,12 +124,13 @@ fn abbreviate_fraction_number(num: f64) -> String {
     }
 
     let thousand_raise: f64 = (ten_th_counter as f64 / 3.0).ceil();
-    let mut symbol_index = FRACTION_COUNT as f64 - thousand_raise;
+    let symbol_index = FRACTION_COUNT as f64 - thousand_raise;
     if symbol_index < 0.0 {
-        symbol_index = 0.0;
+        return String::from("0");
     }
     let symbol = *SYMBOLS.get(symbol_index as usize).unwrap_or(&"");
     let result = (num * THOUSAND.powf(thousand_raise)) as i128;
+
     format!("{result}{symbol}")
 }
 
