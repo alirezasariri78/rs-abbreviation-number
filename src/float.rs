@@ -7,7 +7,7 @@ pub fn abbreviate_fnumber(num: f64) -> String {
     let symbol = *SYMBOLS.get(index_of_symbol).unwrap();
     let pw: f64 = base.powf(index_of_symbol as f64);
     number /= pw;
-    format!("{}{}", fix_format(number), symbol)
+    format!("{}{}", remove_floating_zero(number), symbol)
 }
 
 pub fn unabbreviate_fnumber(number: &str) -> f64 {
@@ -35,11 +35,7 @@ pub fn unabbreviate_fnumber(number: &str) -> f64 {
     }
 }
 
-// example:
-// *1.1
-// 1.01
-// 1
-fn fix_format(number: f64) -> String {
+fn remove_floating_zero(number: f64) -> String {
     let num_str: String = number.to_string();
     let number_chars = num_str.chars();
     let dot_index = number_chars.clone().position(|c| c == '.').unwrap_or(0);
@@ -47,20 +43,11 @@ fn fix_format(number: f64) -> String {
         return num_str;
     }
     let chars: Vec<char> = number_chars.take(dot_index + 3).collect();
-
-    let size = chars.len();
-    // from right to left
-    let first_float = *chars.get(size - 1).unwrap();
-    let second_float = *chars.get(size - 2).unwrap();
-
-    if first_float == '0' {
-        if second_float == '0' {
-            return chars.into_iter().take(size - 3).collect();
-        } else {
-            return chars.into_iter().take(size - 1).collect();
-        }
-    }
-    chars.into_iter().collect()
+    let chars_to_str: String = chars.into_iter().collect();
+    chars_to_str
+        .trim_end_matches('0')
+        .trim_end_matches('.')
+        .to_string()
 }
 
 mod abbreviate_tests {
