@@ -66,7 +66,7 @@ impl NumericUnAbbreviate for &str {
     }
 }
 
-pub fn abbreviate_number(num: f64) -> String {
+fn abbreviate_number(num: f64) -> String {
     let base: f64 = 1000.0;
     let mut number = num;
     let max_legal_index = SYMBOLS.len() - 1;
@@ -80,7 +80,7 @@ pub fn abbreviate_number(num: f64) -> String {
     format!("{}{}", remove_floating_zero(number), symbol)
 }
 
-pub fn unabbreviate_number(number: &str) -> f64 {
+fn unabbreviate_number(number: &str) -> f64 {
     let trimed_num = number.trim_start_matches('0');
     let chars = trimed_num.chars();
     let last_char = chars.clone().last();
