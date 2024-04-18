@@ -1,4 +1,4 @@
-const SYMBOLS: [&str; 7] = ["", "K", "M", "G", "T", "P", "E"];
+const SYMBOLS: [&str; 11] = ["", "K", "M", "G", "T", "P", "E", "Z", "Y", "R", "Q"];
 
 pub trait NumericAbbreviate {
     fn abbreviate_fnumber(&self) -> String;
@@ -168,16 +168,16 @@ mod abbreviate_tests {
     #[test]
     fn abbreviate_fnumber_big_negative_number_test() {
         assert_eq!(
-            "-999999999999999.5E",
-            abbreviate_fnumber(-999_999_999_999_999_500_123_123_000_000_123.0)
+            "-999.5Q",
+            (-999_509_999_999_999_000_123_123_000_000_123.0).abbreviate_fnumber()
         );
     }
 
     #[test]
     fn abbreviate_fnumber_big_number_test() {
         assert_eq!(
-            "999999999999999.5E",
-            abbreviate_fnumber(999_999_999_999_999_500_123_123_000_000_123.0)
+            "999.5Q",
+            abbreviate_fnumber(999_509_999_999_999_000_123_123_000_000_123.0)
         );
     }
 }
