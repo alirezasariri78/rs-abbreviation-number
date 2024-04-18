@@ -33,7 +33,7 @@ Abbreviate or Unabbreviate numbers in rust
 |      1Q     |1_000_000_000_000_000_000_000_000_000_000|
 
 
-Usage Example :
+## Usage Example :
 
 ```rust
 
@@ -55,7 +55,7 @@ fn main() {
 
 ```
 
-Also For Big Int Numbers: 
+## Also For Big Int Numbers: 
 ```rust
 fn main() {
     let big_num: i128 = 999_509_999_999_999_000_123_123_000_000_123;
@@ -71,7 +71,7 @@ fn main() {
                    1.90 --->1.9
     
 
-Table Of Symbols:
+## Table Of Symbols:
 
 |     Symbol                   |    Base    |
 |-----------------------------|--------------|
