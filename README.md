@@ -24,11 +24,11 @@ Usage Example :
 ```rust
 
 fn main() {
-    println!("{}", 123.abbreviate_fnumber()); // 123
-    println!("{}", 123_000.0.abbreviate_fnumber()); // 123K
+    println!("{}", 123.abbreviate_fnumber()); // result: 123
+    println!("{}", 123_000.0.abbreviate_fnumber()); //result: 123K
 
-    println!("{}", "1K".unabbreviate_fnumber()); // 1000.0
-    println!("{}", "1M".unabbreviate_fnumber()); 1000000.0
+    println!("{}", "1K".unabbreviate_fnumber()); //result: 1000.0
+    println!("{}", "1M".unabbreviate_fnumber()); //result: 1000000.0
 }
 
 ```
