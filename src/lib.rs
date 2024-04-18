@@ -59,7 +59,11 @@ impl NumericUnAbbreviate for &str {
 fn abbreviate_fnumber(num: f64) -> String {
     let base: f64 = 1000.0;
     let mut number = num;
-    let index_of_symbol = num.abs().log(base).floor() as usize;
+    let max_legal_index = SYMBOLS.len() - 1;
+    let mut index_of_symbol = num.abs().log(base).floor() as usize;
+    if index_of_symbol > max_legal_index {
+        index_of_symbol = max_legal_index
+    }
     let symbol = *SYMBOLS.get(index_of_symbol).unwrap();
     let pw: f64 = base.powf(index_of_symbol as f64);
     number /= pw;
@@ -158,6 +162,22 @@ mod abbreviate_tests {
         assert_eq!(
             "-999.5E",
             abbreviate_fnumber(-999_500_123_123_000_000_123.0)
+        );
+    }
+
+    #[test]
+    fn abbreviate_fnumber_big_negative_number_test() {
+        assert_eq!(
+            "-999999999999999.5E",
+            abbreviate_fnumber(-999_999_999_999_999_500_123_123_000_000_123.0)
+        );
+    }
+
+    #[test]
+    fn abbreviate_fnumber_big_number_test() {
+        assert_eq!(
+            "999999999999999.5E",
+            abbreviate_fnumber(999_999_999_999_999_500_123_123_000_000_123.0)
         );
     }
 }
