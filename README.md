@@ -70,7 +70,7 @@ fn main() {
             
     
 
-## Table Of Symbols:
+## Table Of Metric Prefix:
 
 |     Symbol                   |    Base    |
 |-----------------------------|--------------|
