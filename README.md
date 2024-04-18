@@ -1,4 +1,4 @@
-Abbreviate or Unabbreviate numbers in rust
+## **Abbreviate or Unabbreviate numbers in rust**
 
 ## For Numbers Less Then 1
 |     Input                   |    Output    |
