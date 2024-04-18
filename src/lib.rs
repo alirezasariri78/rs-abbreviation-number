@@ -89,8 +89,7 @@ fn abbreviate_number(num: f64) -> String {
 }
 
 fn unabbreviate_number(number: &str) -> f64 {
-    let trimed_num = number.trim_start_matches('0');
-    let chars = trimed_num.chars();
+    let chars = number.chars();
     let last_char = chars.clone().last();
     match last_char {
         Some(symbol) => {
@@ -103,14 +102,21 @@ fn unabbreviate_number(number: &str) -> f64 {
                 .position(|c| c == symbol.to_string())
                 .unwrap_or(FRACTION_COUNT);
 
-            println!("{symbol_index}");
             let num: String = chars.clone().into_iter().take(chars.count() - 1).collect();
             let parsed_num = num.parse().unwrap_or(0.0);
             let base: f64 = 1000.0;
-            let z: f64 = base.powf((symbol_index - FRACTION_COUNT) as f64);
-            return parsed_num * z;
+            match symbol_index {
+                0..=FRACTION_COUNT => {
+                    let z: f64 = base.powf((FRACTION_COUNT - symbol_index) as f64);
+                    return parsed_num / z;
+                }
+                _ => {
+                    let z: f64 = base.powf((symbol_index - FRACTION_COUNT) as f64);
+                    return parsed_num * z;
+                }
+            };
         }
-        None => return trimed_num.parse::<f64>().unwrap_or(0.0),
+        None => return number.parse::<f64>().unwrap_or(0.0),
     }
 }
 
