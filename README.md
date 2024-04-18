@@ -20,16 +20,14 @@ Abbreviate or Unabbreviate numbers in rust
 
 
 Usage Example :
-
-1. Use As A Extension : 
 ```
 
 fn main() {
-    println!("{}", 123.abbreviate_fnumber());
-    println!("{}", 123_000.0.abbreviate_fnumber());
+    println!("{}", 123.abbreviate_fnumber()); // 123
+    println!("{}", 123_000.0.abbreviate_fnumber()); // 123K
 
-    println!("{}", "1K".unabbreviate_fnumber());
-    println!("{}", "1M".unabbreviate_fnumber());
+    println!("{}", "1K".unabbreviate_fnumber()); // 1000.0
+    println!("{}", "1M".unabbreviate_fnumber()); 1000000.0
 }
 
 ```
