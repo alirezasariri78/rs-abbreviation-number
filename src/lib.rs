@@ -20,6 +20,12 @@ impl NumericAbbreviate for f32 {
     }
 }
 
+impl NumericAbbreviate for i128 {
+    fn abbreviate_number(&self) -> String {
+        abbreviate_number(*self as f64)
+    }
+}
+
 impl NumericAbbreviate for i64 {
     fn abbreviate_number(&self) -> String {
         abbreviate_number(*self as f64)
@@ -169,18 +175,15 @@ mod abbreviate_tests {
             (-999_509_999_999_999_000_123_123_000_000_123.0).abbreviate_number()
         );
 
-        // assert_eq!(
-        //     "-999.5Q",
-        //     (-999_509_999_999_999_000_123_123_000_000_123).abbreviate_number()
-        // );
+        let big_num: i128 = -999_509_999_999_999_000_123_123_000_000_123;
+        assert_eq!("-999.5Q", big_num.abbreviate_number());
     }
 
     #[test]
     fn abbreviate_number_big_number_test() {
-        assert_eq!(
-            "999.5Q",
-            abbreviate_number(999_509_999_999_999_000_123_123_000_000_123.0)
-        );
+        let big_num: i128 = 999_509_999_999_999_000_123_123_000_000_123;
+
+        assert_eq!("999.5Q", big_num.abbreviate_number());
     }
 }
 
