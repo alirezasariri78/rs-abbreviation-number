@@ -3,6 +3,11 @@ Abbreviate or Unabbreviate numbers in rust
 
 |     Input                   |    Output    |
 |-----------------------------|--------------|
+|         0.1           |     100m       |
+|         0.01           |     10m       |
+|         0.001           |     1m       |
+|         0.000_000_001           |     1n       |
+|         0.000_000_000_000_000_000_000_000_000_1           |     100q       |
 |         1_000               |     1K       |
 |         1_000_000           |     1M       |
 |         1_090               |     1.09K    |
@@ -10,7 +15,6 @@ Abbreviate or Unabbreviate numbers in rust
 | 123_000_000_000_000_000_000 |     123E     |
 | -123_000_000_000_000_000_000 |     -123E     |
 | 1_000_000_000_000_000_000_000_000_000_000 |     1Q     |
-
 
 
 
@@ -30,11 +34,19 @@ Usage Example :
 ```rust
 
 fn main() {
+
+    // numbers greater then 1:
     println!("{}", 123.abbreviate_number()); // result: 123
     println!("{}", 123_000.0.abbreviate_number()); //result: 123K
 
     println!("{}", "1K".unabbreviate_number()); //result: 1000.0
     println!("{}", "1M".unabbreviate_number()); //result: 1000000.0
+
+    // numbers less then 1:
+    println!("{}", (0.1).abbreviate_number()); // result: 100m
+    println!("{}",(0.000_000_001).abbreviate_number()); //result: 1n
+
+
 }
 
 ```
