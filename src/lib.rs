@@ -50,6 +50,12 @@ impl NumericUnAbbreviate for String {
     }
 }
 
+impl NumericUnAbbreviate for &str {
+    fn unabbreviate_fnumber(&self) -> f64 {
+        unabbreviate_fnumber(self)
+    }
+}
+
 fn abbreviate_fnumber(num: f64) -> String {
     let base: f64 = 1000.0;
     let mut number = num;
@@ -260,6 +266,10 @@ mod unabbreviate_tests {
         assert_eq!(-101.0, unabbreviate_fnumber("-101"));
         assert_eq!(-1000.0, unabbreviate_fnumber("-1K"));
         assert_eq!(-1_010_000.0, unabbreviate_fnumber("-1.01M"));
+
+        assert_eq!(-101.0, "-101".unabbreviate_fnumber());
+        assert_eq!(-1000.0, "-1k".unabbreviate_fnumber());
+        assert_eq!(-1_010_000.0, "-1.01M".unabbreviate_fnumber());
     }
 
     #[test]
