@@ -20,7 +20,8 @@ Abbreviate or Unabbreviate numbers in rust
 
 
 Usage Example :
-```
+
+```rust
 
 fn main() {
     println!("{}", 123.abbreviate_fnumber()); // 123
