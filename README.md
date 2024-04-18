@@ -50,6 +50,8 @@ fn main() {
     println!("{}", (0.1).abbreviate_number()); // result: 100m
     println!("{}",(0.000_000_001).abbreviate_number()); //result: 1n
 
+    println!("{}", "111z".unabbreviate_number()); // result : 0.000000000000000000111
+    println!("{}", "100n".unabbreviate_number()); // result : 0.0000001
 
 }
 
