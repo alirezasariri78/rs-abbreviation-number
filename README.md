@@ -65,17 +65,16 @@ fn main() {
 ```
 ## Note
         . Symbols Are Case-Sensitive 
-        . Program Will Automaticly Remove Leading Zero 
-              Example: 
-                   001 --->1
-                   1.90 --->1.9
+        . Program Will Automaticly Remove Leading Zero (001 Will Become 1 and etc)
+        .
+            
     
 
 ## Table Of Symbols:
 
 |     Symbol                   |    Base    |
 |-----------------------------|--------------|
-|         K               |     1_000       |
+|         K               |     10^3       |
 |         M               |      1_000_000      |
 |         G               |     1_000_000_000    |
 |      T                 |      1_000_000_000_000 |
