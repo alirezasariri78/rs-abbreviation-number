@@ -33,8 +33,7 @@ fn main() {
 
 ```
 
-Symbols:
-"K", "M", "G", "T", "P", "E"
+Table Of Symbols:
 
 |     Symbol                   |    Base    |
 |-----------------------------|--------------|
