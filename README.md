@@ -69,9 +69,8 @@ fn main() {
 
 <details>
 <summary>Note</summary>
-Symbols Are Case-Sensitive
-Program Will Automaticly Remove Leading Zero (001 Will Become 1 and etc)
-
+    .Symbols Are Case-Sensitive
+    .Program Will Automaticly Remove Leading Zero (001 Will Become 1 and etc)
 </details>
 
 
