@@ -101,9 +101,11 @@ Program Will Automaticly Remove Leading Zero (001 Will Become 1 and etc)
 
 
 
-## TODO : 
 
-[]Create Custom Symbols 
-[]Create Padding For Symbols
+```[tasklist]
+### TODO
+- [ ] Create Custom Symbols 
+- [ ] Create Padding For Symbols
+```
 
 
