@@ -98,3 +98,12 @@ Program Will Automaticly Remove Leading Zero (001 Will Become 1 and etc)
 |      Y                 |      $`10^ {24}`$  |
 |      R                 |      $`10^ {27}`$   |
 |      Q                 |       $`10^{30}`$    |
+
+
+
+## TODO : 
+
+[ ]Create Custom Symbols 
+[ ]Create Padding For Symbols
+
+
