@@ -1,6 +1,6 @@
 [package]
 name = "rs-abbreviation-number"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description="abbreviate numbers using metric prefix"
 license="MIT OR Apache-2.0"
