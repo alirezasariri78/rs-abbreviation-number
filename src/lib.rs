@@ -76,6 +76,42 @@ impl NumericAbbreviate for i8 {
     }
 }
 
+impl NumericAbbreviate for usize {
+    fn abbreviate_number(&self) -> String {
+        handle_abbreviation(*self as f64)
+    }
+}
+
+impl NumericAbbreviate for u128 {
+    fn abbreviate_number(&self) -> String {
+        handle_abbreviation(*self as f64)
+    }
+}
+
+impl NumericAbbreviate for u64 {
+    fn abbreviate_number(&self) -> String {
+        handle_abbreviation(*self as f64)
+    }
+}
+
+impl NumericAbbreviate for u32 {
+    fn abbreviate_number(&self) -> String {
+        handle_abbreviation(*self as f64)
+    }
+}
+
+impl NumericAbbreviate for u16 {
+    fn abbreviate_number(&self) -> String {
+        handle_abbreviation(*self as f64)
+    }
+}
+
+impl NumericAbbreviate for u8 {
+    fn abbreviate_number(&self) -> String {
+        handle_abbreviation(*self as f64)
+    }
+}
+
 impl NumericUnAbbreviate for String {
     fn unabbreviate_number(&self) -> f64 {
         unabbreviate_number(self)

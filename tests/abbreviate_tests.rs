@@ -115,3 +115,28 @@ mod integer_abbreviate_tests {
         assert_eq!("-1.1G", (-1_100_345_000).abbreviate_number());
     }
 }
+
+mod utype_tests {
+    use rs_abbreviation_number::*;
+
+    #[test]
+    fn abbreviate_number_randoms_test() {
+        let num128: u128 = 999_509_999_999_999_000_123_123_000_000_123;
+        assert_eq!("999.5Q", num128.abbreviate_number());
+
+        let num64: u64 = 999_509_999_999_999_000;
+        assert_eq!("999.5P", num64.abbreviate_number());
+
+        let num32: u32 = 999_509_999;
+        assert_eq!("999.5M", num32.abbreviate_number());
+
+        let num16: u16 = 9999;
+        assert_eq!("9.99K", num16.abbreviate_number());
+
+        let num8: u8 = 99;
+        assert_eq!("99", num8.abbreviate_number());
+
+        let num: usize = 10_000_000_000_000_000_000;
+        assert_eq!("10E", num.abbreviate_number());
+    }
+}
