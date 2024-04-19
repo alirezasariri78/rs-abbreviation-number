@@ -103,7 +103,7 @@ Program Will Automaticly Remove Leading Zero (001 Will Become 1 and etc)
 
 
 ```[tasklist]
-### TODO
+ TODO :
 - [ ] Create Custom Symbols 
 - [ ] Create Padding For Symbols
 ```
