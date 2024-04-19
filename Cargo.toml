@@ -5,7 +5,7 @@ edition = "2021"
 description="abbreviate numbers using metric prefix"
 license="MIT OR Apache-2.0"
 keywords = ["prefix", "metric","abbreviation","number"]
-
+repository = "https://github.com/alirezasariri78/rs-abbreviation-number"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]

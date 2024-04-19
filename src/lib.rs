@@ -1,10 +1,36 @@
 mod calculation;
 use calculation::*;
 pub trait NumericAbbreviate {
+    ///  An Extension For Abbreviating Number.
+    /// # Example
+    /// ```
+    /// use rs_abbreviation_number::*;
+    /// let number=110_000;
+    /// let result=number.abbreviate_number();
+    /// assert_eq!("110K",result);
+    ///
+    /// let number=0.000_1;
+    /// let result=number.abbreviate_number();
+    /// assert_eq!("100μ",result);
+    /// ```
     fn abbreviate_number(&self) -> String;
 }
 
 pub trait NumericUnAbbreviate {
+    ///  An Extension For UnAbbreviating Number.
+    /// # Example
+    /// ```
+    /// use rs_abbreviation_number::*;
+    /// let input="110K";
+    /// let result=input.unabbreviate_number();
+    /// assert_eq!(110_000.0,result);
+    ///
+    /// let input="1n";
+    /// let result=input.unabbreviate_number();
+    /// assert_eq!(0.000_000_001,result);
+    ///
+    /// ```
+
     fn unabbreviate_number(&self) -> f64;
 }
 
