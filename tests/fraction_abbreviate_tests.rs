@@ -43,6 +43,7 @@ mod tests {
         assert_eq!(
             "100-q",
             (0.000_000_000_000_000_000_000_000_000_1).abbreviate_number(&AbbreviationOptions {
+                padding: 0,
                 separator: "-".to_string()
             })
         );
@@ -62,18 +63,31 @@ mod tests {
     }
 
     #[test]
+    fn padding_abbr() {
+        assert_eq!(
+            "-100,   q",
+            (-0.000_000_000_000_000_000_000_000_000_1).abbreviate_number(&AbbreviationOptions {
+                separator: String::from(","),
+                padding: 3
+            })
+        );
+    }
+
+    #[test]
     fn negative_number_seperator_test() {
         assert_eq!(
             "-100 q",
             (-0.000_000_000_000_000_000_000_000_000_1).abbreviate_number(&AbbreviationOptions {
-                separator: String::from(" ")
+                separator: String::from(" "),
+                ..Default::default()
             })
         );
 
         assert_eq!(
             "-100-q",
             (-0.000_000_000_000_000_000_000_000_000_1).abbreviate_number(&AbbreviationOptions {
-                separator: String::from("-")
+                separator: String::from("-"),
+                ..Default::default()
             })
         );
     }
