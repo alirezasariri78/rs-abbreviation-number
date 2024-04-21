@@ -1,10 +1,12 @@
+use crate::AbbreviationOptions;
+
 const SYMBOLS: [&str; 21] = [
     "q", "r", "y", "z", "a", "f", "p", "n", "μ", "m", "", "K", "M", "G", "T", "P", "E", "Z", "Y",
     "R", "Q",
 ];
 const FRACTION_COUNT: usize = 10;
 
-pub fn abbreviate_number(num: f64) -> String {
+pub fn abbreviate_number(num: f64, options: &AbbreviationOptions) -> String {
     let base: f64 = 1000.0;
     let mut number = num;
     let max_legal_index = SYMBOLS.len() - 1;
@@ -15,7 +17,7 @@ pub fn abbreviate_number(num: f64) -> String {
     let symbol = *SYMBOLS.get(index_of_symbol).unwrap();
     let pw: f64 = base.powf((index_of_symbol - FRACTION_COUNT) as f64);
     number /= pw;
-    format!("{}{}", remove_floating_zero(number), symbol)
+    format!("{}{}{}", remove_floating_zero(number), options.separator, symbol)
 }
 
 pub fn unabbreviate_number(number: &str) -> f64 {
@@ -50,7 +52,7 @@ pub fn unabbreviate_number(number: &str) -> f64 {
     }
 }
 
-pub fn abbreviate_fraction_number(num: f64) -> String {
+pub fn abbreviate_fraction_number(num: f64, options: &AbbreviationOptions) -> String {
     let mut number = num.abs();
     let mut ten_th_counter = 0;
     const THOUSAND: f64 = 1000.0;
@@ -67,7 +69,7 @@ pub fn abbreviate_fraction_number(num: f64) -> String {
     let symbol = *SYMBOLS.get(symbol_index as usize).unwrap_or(&"");
     let result = (num * THOUSAND.powf(thousand_raise)) as i128;
 
-    format!("{result}{symbol}")
+    format!("{}{}{}", result, options.separator, symbol)
 }
 
 fn remove_floating_zero(number: f64) -> String {

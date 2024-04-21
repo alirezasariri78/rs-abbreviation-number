@@ -105,7 +105,7 @@ Program Will Automaticly Remove Leading Zero (001 Will Become 1 and etc)
 ```[tasklist]
 - [ ] Optimize Code
 - [ ] Create Custom Symbols 
-- [ ] Create Padding For Symbols
+- [x] Custom separator pass by option
 - [ ] Create Unit Conversion 
 ```
 
