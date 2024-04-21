@@ -10,7 +10,7 @@ pub trait NumericAbbreviate {
     /// assert_eq!("110K",result);
     ///
     /// let number=0.000_1;
-    /// let result=number.abbreviate_number(&AbbreviationOptions{separator:"-".to_string()});
+    /// let result=number.abbreviate_number(&AbbreviationOptions{separator:"-".to_string(),padding:0});
     /// assert_eq!("100-μ",result);
     /// ```
     fn abbreviate_number(&self, options: &AbbreviationOptions) -> String;
@@ -134,12 +134,14 @@ fn handle_abbreviation(number: f64, options: &AbbreviationOptions) -> String {
 
 pub struct AbbreviationOptions {
     pub separator: String,
+    pub padding: usize,
 }
 
 impl Default for AbbreviationOptions {
     fn default() -> Self {
         Self {
             separator: "".to_string(),
+            padding: 0,
         }
     }
 }
