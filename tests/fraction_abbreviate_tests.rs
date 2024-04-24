@@ -65,10 +65,10 @@ mod tests {
     #[test]
     fn padding_abbr() {
         assert_eq!(
-            "-100,   q",
+            "-100   q",
             (-0.000_000_000_000_000_000_000_000_000_1).abbreviate_number(&AbbreviationOptions {
-                separator: String::from(","),
-                padding: 3
+                padding: 3,
+                ..Default::default()
             })
         );
     }
