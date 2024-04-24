@@ -40,18 +40,18 @@
 fn main() {
 
     // numbers greater then 1:
-    println!("{}", 123.abbreviate_number()); // result: 123
-    println!("{}", 123_000.0.abbreviate_number()); //result: 123K
+    println!("{}", 123.abbreviate_number(&Default::default())); // result: 123
+    println!("{}", 123_000.0.abbreviate_number(&Default::default())); //result: 123K
 
-    println!("{}", "1K".unabbreviate_number()); //result: 1000.0
-    println!("{}", "1M".unabbreviate_number()); //result: 1000000.0
+    println!("{}", "1K".unabbreviate_number(&Default::default())); //result: 1000.0
+    println!("{}", "1M".unabbreviate_number(&Default::default())); //result: 1000000.0
 
     // numbers less then 1:
-    println!("{}", (0.1).abbreviate_number()); // result: 100m
-    println!("{}",(0.000_000_001).abbreviate_number()); //result: 1n
+    println!("{}", (0.1).abbreviate_number(&Default::default())); // result: 100m
+    println!("{}",(0.000_000_001).abbreviate_number(&Default::default())); //result: 1n
 
-    println!("{}", "111z".unabbreviate_number()); // result : 0.000000000000000000111
-    println!("{}", "100n".unabbreviate_number()); // result : 0.0000001
+    println!("{}", "111z".unabbreviate_number(&Default::default())); // result : 0.000000000000000000111
+    println!("{}", "100n".unabbreviate_number(&Default::default())); // result : 0.0000001
 
 }
 
@@ -61,7 +61,7 @@ fn main() {
 ```rust
 fn main() {
     let big_num: i128 = 999_509_999_999_999_000_123_123_000_000_123;
-    println!("{}", big_num.abbreviate_number()); // result : 999.5Q
+    println!("{}", big_num.abbreviate_number(&Default::default())); // result : 999.5Q
 }
 
 ```
