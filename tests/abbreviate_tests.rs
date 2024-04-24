@@ -210,5 +210,8 @@ mod utype_tests {
 
         let num: usize = 10_000_000_000_000_000_000;
         assert_eq!("10E", num.abbreviate_number(&Default::default()));
+
+        let numi: isize = 10_000_000_000_000_000;
+        assert_eq!("10P", numi.abbreviate_number(&Default::default()));
     }
 }

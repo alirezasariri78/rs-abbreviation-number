@@ -34,6 +34,12 @@ pub trait NumericUnAbbreviate {
     fn unabbreviate_number(&self) -> f64;
 }
 
+impl NumericAbbreviate for isize {
+    fn abbreviate_number(&self, options: &AbbreviationOptions) -> String {
+        handle_abbreviation(*self as f64, options)
+    }
+}
+
 impl NumericAbbreviate for f64 {
     fn abbreviate_number(&self, options: &AbbreviationOptions) -> String {
         handle_abbreviation(*self, options)
