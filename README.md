@@ -66,6 +66,26 @@ fn main() {
 
 ```
 
+## Customize Format:
+```rust
+fn main(){
+ assert_eq!(
+            "100-q",
+            (0.000_000_000_000_000_000_000_000_000_1).abbreviate_number(&AbbreviationOptions {
+                padding: 0,
+                separator: "-".to_string()
+            })
+        );
+
+ assert_eq!(
+            "-100   q",
+            (-0.000_000_000_000_000_000_000_000_000_1).abbreviate_number(&AbbreviationOptions {
+                padding: 3,
+                ..Default::default()
+            })
+        );
+}
+```
 
 ## Note:
 Symbols Are Case-Sensitive And
