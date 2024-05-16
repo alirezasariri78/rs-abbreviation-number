@@ -1,8 +1,12 @@
 const MINUTE_AS_SECOND: u64 = 60;
 const HOUR_AS_SECOND: u64 = MINUTE_AS_SECOND * 60;
-const DAY_AS_SECOND: u64 = HOUR_AS_SECOND * 24;
-const MONTH_AS_SECOND: u64 = 2_629_747;
-const YEAR_AS_SECOND: u64 = 31_557_600;
+const DAY_AS_SECOND: u64 = HOUR_AS_SECOND * HOUR_IN_DAY;
+const MONTH_AS_SECOND: u64 = DAY_AS_SECOND * DAYS_IN_MONTH;
+const YEAR_AS_SECOND: u64 = MONTH_IN_YEAR * MONTH_AS_SECOND;
+
+const HOUR_IN_DAY: u64 = 24;
+const MONTH_IN_YEAR: u64 = 12;
+const DAYS_IN_MONTH: u64 = 30;
 
 pub struct Second(u64);
 pub struct Minute(u64);
@@ -23,106 +27,106 @@ pub trait TimeCalculator {
 
 impl TimeCalculator for Second {
     fn get_year(&self) -> u64 {
-        &self.0 / YEAR_AS_SECOND
+        self.0 / YEAR_AS_SECOND
     }
     fn get_month(&self) -> u64 {
-        &self.0 / MONTH_AS_SECOND
+        &self.get_year() * MONTH_IN_YEAR
     }
     fn get_day(&self) -> u64 {
-        &self.0 / DAY_AS_SECOND
+        &self.get_month() * DAYS_IN_MONTH
     }
     fn get_hour(&self) -> u64 {
-        &self.0 / HOUR_AS_SECOND
+        &self.get_day() * HOUR_IN_DAY
     }
     fn get_minute(&self) -> u64 {
-        &self.0 / MINUTE_AS_SECOND
+        self.get_hour() * 60
     }
     fn get_second(&self) -> u64 {
-        self.0
+        self.get_minute() * 60
     }
 }
 
 impl TimeCalculator for Minute {
     fn get_year(&self) -> u64 {
-        &self.0 / YEAR_AS_SECOND
+        self.0 / YEAR_AS_SECOND
     }
     fn get_month(&self) -> u64 {
-        &self.0 / MONTH_AS_SECOND
+        &self.get_year() * MONTH_IN_YEAR
     }
     fn get_day(&self) -> u64 {
-        &self.0 / DAY_AS_SECOND
+        &self.get_month() * DAYS_IN_MONTH
     }
     fn get_hour(&self) -> u64 {
-        &self.0 / HOUR_AS_SECOND
+        &self.get_day() * HOUR_IN_DAY
     }
     fn get_minute(&self) -> u64 {
-        &self.0 / MINUTE_AS_SECOND
+        self.get_hour() * 60
     }
     fn get_second(&self) -> u64 {
-        self.0
+        self.get_minute() * 60
     }
 }
 
 impl TimeCalculator for Hour {
     fn get_year(&self) -> u64 {
-        &self.0 / YEAR_AS_SECOND
+        self.0 / YEAR_AS_SECOND
     }
     fn get_month(&self) -> u64 {
-        &self.0 / MONTH_AS_SECOND
+        &self.get_year() * MONTH_IN_YEAR
     }
     fn get_day(&self) -> u64 {
-        &self.0 / DAY_AS_SECOND
+        &self.get_month() * DAYS_IN_MONTH
     }
     fn get_hour(&self) -> u64 {
-        &self.0 / HOUR_AS_SECOND
+        &self.get_day() * HOUR_IN_DAY
     }
     fn get_minute(&self) -> u64 {
-        &self.0 / MINUTE_AS_SECOND
+        self.get_hour() * 60
     }
     fn get_second(&self) -> u64 {
-        self.0
+        self.get_minute() * 60
     }
 }
 
 impl TimeCalculator for Day {
     fn get_year(&self) -> u64 {
-        &self.0 / YEAR_AS_SECOND
+        self.0 / YEAR_AS_SECOND
     }
     fn get_month(&self) -> u64 {
-        &self.0 / MONTH_AS_SECOND
+        &self.get_year() * MONTH_IN_YEAR
     }
     fn get_day(&self) -> u64 {
-        &self.0 / DAY_AS_SECOND
+        &self.get_month() * DAYS_IN_MONTH
     }
     fn get_hour(&self) -> u64 {
-        &self.0 / HOUR_AS_SECOND
+        &self.get_day() * HOUR_IN_DAY
     }
     fn get_minute(&self) -> u64 {
-        &self.0 / MINUTE_AS_SECOND
+        self.get_hour() * 60
     }
     fn get_second(&self) -> u64 {
-        self.0
+        self.get_minute() * 60
     }
 }
 
 impl TimeCalculator for Month {
     fn get_year(&self) -> u64 {
-        &self.0 / YEAR_AS_SECOND
+        self.0 / YEAR_AS_SECOND
     }
     fn get_month(&self) -> u64 {
-        &self.0 / MONTH_AS_SECOND
+        &self.get_year() * MONTH_IN_YEAR
     }
     fn get_day(&self) -> u64 {
-        &self.0 / DAY_AS_SECOND
+        &self.get_month() * DAYS_IN_MONTH
     }
     fn get_hour(&self) -> u64 {
-        &self.0 / HOUR_AS_SECOND
+        &self.get_day() * HOUR_IN_DAY
     }
     fn get_minute(&self) -> u64 {
-        &self.0 / MINUTE_AS_SECOND
+        self.get_hour() * 60
     }
     fn get_second(&self) -> u64 {
-        self.0
+        self.get_minute() * 60
     }
 }
 
@@ -131,21 +135,19 @@ impl TimeCalculator for Year {
         self.0 / YEAR_AS_SECOND
     }
     fn get_month(&self) -> u64 {
-        const MONTH_COUNT: u64 = 12;
-        self.0 / YEAR_AS_SECOND * MONTH_COUNT
+        &self.get_year() * MONTH_IN_YEAR
     }
     fn get_day(&self) -> u64 {
-        &self.0 / DAY_AS_SECOND
+        &self.get_month() * DAYS_IN_MONTH
     }
     fn get_hour(&self) -> u64 {
-        &self.0 / HOUR_AS_SECOND
+        &self.get_day() * HOUR_IN_DAY
     }
     fn get_minute(&self) -> u64 {
-        &self.0 / MINUTE_AS_SECOND
+        self.get_hour() * 60
     }
     fn get_second(&self) -> u64 {
-        
-        self.0
+        self.get_minute() * 60
     }
 }
 
