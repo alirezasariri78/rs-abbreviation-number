@@ -8,148 +8,28 @@ const HOUR_IN_DAY: u64 = 24;
 const MONTH_IN_YEAR: u64 = 12;
 const DAYS_IN_MONTH: u64 = 30;
 
+pub use time_macro::*;
+use time_macro_derive::*;
+
+#[derive(TimeCalculator)]
 pub struct Second(u64);
+
+#[derive(TimeCalculator)]
 pub struct Minute(u64);
+
+#[derive(TimeCalculator)]
 pub struct Hour(u64);
+
+#[derive(TimeCalculator)]
 pub struct Day(u64);
+
+#[derive(TimeCalculator)]
 pub struct Month(u64);
+
+#[derive(TimeCalculator)]
 pub struct Year(u64);
+
 pub struct Time;
-
-pub trait TimeCalculator {
-    fn get_year(&self) -> u64;
-    fn get_month(&self) -> u64;
-    fn get_day(&self) -> u64;
-    fn get_hour(&self) -> u64;
-    fn get_minute(&self) -> u64;
-    fn get_second(&self) -> u64;
-}
-
-impl TimeCalculator for Second {
-    fn get_year(&self) -> u64 {
-        self.0 / YEAR_AS_SECOND
-    }
-    fn get_month(&self) -> u64 {
-        &self.get_year() * MONTH_IN_YEAR
-    }
-    fn get_day(&self) -> u64 {
-        &self.get_month() * DAYS_IN_MONTH
-    }
-    fn get_hour(&self) -> u64 {
-        &self.get_day() * HOUR_IN_DAY
-    }
-    fn get_minute(&self) -> u64 {
-        self.get_hour() * 60
-    }
-    fn get_second(&self) -> u64 {
-        self.get_minute() * 60
-    }
-}
-
-impl TimeCalculator for Minute {
-    fn get_year(&self) -> u64 {
-        self.0 / YEAR_AS_SECOND
-    }
-    fn get_month(&self) -> u64 {
-        &self.get_year() * MONTH_IN_YEAR
-    }
-    fn get_day(&self) -> u64 {
-        &self.get_month() * DAYS_IN_MONTH
-    }
-    fn get_hour(&self) -> u64 {
-        &self.get_day() * HOUR_IN_DAY
-    }
-    fn get_minute(&self) -> u64 {
-        self.get_hour() * 60
-    }
-    fn get_second(&self) -> u64 {
-        self.get_minute() * 60
-    }
-}
-
-impl TimeCalculator for Hour {
-    fn get_year(&self) -> u64 {
-        self.0 / YEAR_AS_SECOND
-    }
-    fn get_month(&self) -> u64 {
-        &self.get_year() * MONTH_IN_YEAR
-    }
-    fn get_day(&self) -> u64 {
-        &self.get_month() * DAYS_IN_MONTH
-    }
-    fn get_hour(&self) -> u64 {
-        &self.get_day() * HOUR_IN_DAY
-    }
-    fn get_minute(&self) -> u64 {
-        self.get_hour() * 60
-    }
-    fn get_second(&self) -> u64 {
-        self.get_minute() * 60
-    }
-}
-
-impl TimeCalculator for Day {
-    fn get_year(&self) -> u64 {
-        self.0 / YEAR_AS_SECOND
-    }
-    fn get_month(&self) -> u64 {
-        &self.get_year() * MONTH_IN_YEAR
-    }
-    fn get_day(&self) -> u64 {
-        &self.get_month() * DAYS_IN_MONTH
-    }
-    fn get_hour(&self) -> u64 {
-        &self.get_day() * HOUR_IN_DAY
-    }
-    fn get_minute(&self) -> u64 {
-        self.get_hour() * 60
-    }
-    fn get_second(&self) -> u64 {
-        self.get_minute() * 60
-    }
-}
-
-impl TimeCalculator for Month {
-    fn get_year(&self) -> u64 {
-        self.0 / YEAR_AS_SECOND
-    }
-    fn get_month(&self) -> u64 {
-        &self.get_year() * MONTH_IN_YEAR
-    }
-    fn get_day(&self) -> u64 {
-        &self.get_month() * DAYS_IN_MONTH
-    }
-    fn get_hour(&self) -> u64 {
-        &self.get_day() * HOUR_IN_DAY
-    }
-    fn get_minute(&self) -> u64 {
-        self.get_hour() * 60
-    }
-    fn get_second(&self) -> u64 {
-        self.get_minute() * 60
-    }
-}
-
-impl TimeCalculator for Year {
-    fn get_year(&self) -> u64 {
-        self.0 / YEAR_AS_SECOND
-    }
-    fn get_month(&self) -> u64 {
-        &self.get_year() * MONTH_IN_YEAR
-    }
-    fn get_day(&self) -> u64 {
-        &self.get_month() * DAYS_IN_MONTH
-    }
-    fn get_hour(&self) -> u64 {
-        &self.get_day() * HOUR_IN_DAY
-    }
-    fn get_minute(&self) -> u64 {
-        self.get_hour() * 60
-    }
-    fn get_second(&self) -> u64 {
-        self.get_minute() * 60
-    }
-}
 
 impl Time {
     pub fn from_second(sec: u64) -> Second {
