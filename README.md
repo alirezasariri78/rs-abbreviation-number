@@ -67,9 +67,26 @@ fn main() {
 ```
 
 
+## Time Estimate: 
+```rust
+use rs_abbreviation_number::time::*;
+fn main() {
+    let seconds=Time::from_second(34_536_000);
+    assert_eq!(1,seconds.get_year());
+    assert_eq!(12,seconds.get_month());
+
+    let hours=Time::from_hour(9593);
+    assert_eq!(1,hours.get_year());
+    assert_eq!(12,hours.get_month());
+    assert_eq!(360,hours.get_day());
+}
+
+```
+
 ## Note:
-Symbols Are Case-Sensitive And
-Program Will Automaticly Remove Leading Zero (001 Will Become 1 and etc)
+- Symbols Are Case-Sensitive And
+- Program Will Automaticly Remove Leading Zero (001 Will Become 1 and etc)
+- Time Estimation Is Not As Accurate As The Name Suggests And It May Differ From The Exact Value
 
 
 
