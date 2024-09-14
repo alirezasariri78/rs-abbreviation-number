@@ -17,13 +17,7 @@ pub fn abbreviate_number(num: f64, options: &AbbreviationOptions) -> String {
     let symbol = *SYMBOLS.get(index_of_symbol).unwrap();
     let pw: f64 = base.powf((index_of_symbol - FRACTION_COUNT) as f64);
     number /= pw;
-    format!(
-        "{}{}{}{}",
-        remove_floating_zero(number),
-        options.separator,
-        " ".repeat(options.padding),
-        symbol
-    )
+    get_in_abbr_format( remove_floating_zero(number),options,symbol)
 }
 
 pub fn unabbreviate_number(number: &str) -> f64 {
@@ -74,10 +68,13 @@ pub fn abbreviate_fraction_number(num: f64, options: &AbbreviationOptions) -> St
     }
     let symbol = *SYMBOLS.get(symbol_index as usize).unwrap_or(&"");
     let result = (num * THOUSAND.powf(thousand_raise)) as i128;
+    get_in_abbr_format(result.to_string(),options,symbol)
+}
 
+fn get_in_abbr_format(number:String,options: &AbbreviationOptions,symbol:&str)->String{
     format!(
         "{}{}{}{}",
-        result,
+        number,
         options.separator,
         " ".repeat(options.padding),
         symbol
