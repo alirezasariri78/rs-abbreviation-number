@@ -133,6 +133,7 @@ impl NumericUnAbbreviate for &str {
     }
 }
 
+#[inline]
 fn handle_abbreviation(number: f64, options: &AbbreviationOptions) -> String {
     if number.abs() >= 1.0 || number == 0.0 {
         abbreviate_number(number, options)

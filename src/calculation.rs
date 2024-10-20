@@ -6,6 +6,7 @@ const SYMBOLS: [&str; 21] = [
 ];
 const FRACTION_COUNT: usize = 10;
 
+#[inline]
 pub fn abbreviate_number(num: f64, options: &AbbreviationOptions) -> String {
     let base: f64 = 1000.0;
     let mut number = num;
@@ -17,7 +18,7 @@ pub fn abbreviate_number(num: f64, options: &AbbreviationOptions) -> String {
     let symbol = *SYMBOLS.get(index_of_symbol).unwrap();
     let pw: f64 = base.powf((index_of_symbol - FRACTION_COUNT) as f64);
     number /= pw;
-    get_in_abbr_format( remove_floating_zero(number),options,symbol)
+    get_in_abbr_format(remove_floating_zero(number), options, symbol)
 }
 
 pub fn unabbreviate_number(number: &str) -> f64 {
@@ -34,24 +35,25 @@ pub fn unabbreviate_number(number: &str) -> f64 {
                 .position(|c| c == symbol.to_string())
                 .unwrap_or(FRACTION_COUNT);
 
-            let num: String = chars.clone().into_iter().take(chars.count() - 1).collect();
+            let num: String = chars.clone().take(chars.count() - 1).collect();
             let parsed_num = num.parse().unwrap_or(0.0);
             let base: f64 = 1000.0;
             match symbol_index {
                 0..=FRACTION_COUNT => {
                     let z: f64 = base.powf((FRACTION_COUNT - symbol_index) as f64);
-                    return parsed_num / z;
+                    parsed_num / z
                 }
                 _ => {
                     let z: f64 = base.powf((symbol_index - FRACTION_COUNT) as f64);
-                    return parsed_num * z;
+                    parsed_num * z
                 }
-            };
+            }
         }
-        None => return number.parse::<f64>().unwrap_or(0.0),
+        None => number.parse::<f64>().unwrap_or(0.0),
     }
 }
 
+#[inline]
 pub fn abbreviate_fraction_number(num: f64, options: &AbbreviationOptions) -> String {
     let mut number = num.abs();
     let mut ten_th_counter = 0;
@@ -68,10 +70,10 @@ pub fn abbreviate_fraction_number(num: f64, options: &AbbreviationOptions) -> St
     }
     let symbol = *SYMBOLS.get(symbol_index as usize).unwrap_or(&"");
     let result = (num * THOUSAND.powf(thousand_raise)) as i128;
-    get_in_abbr_format(result.to_string(),options,symbol)
+    get_in_abbr_format(result.to_string(), options, symbol)
 }
 
-fn get_in_abbr_format(number:String,options: &AbbreviationOptions,symbol:&str)->String{
+fn get_in_abbr_format(number: String, options: &AbbreviationOptions, symbol: &str) -> String {
     format!(
         "{}{}{}{}",
         number,

@@ -36,7 +36,7 @@ impl Time {
     ///  An Extension For Time.
     /// # Example
     /// ```
-   /// use rs_abbreviation_number::time::*;
+    /// use rs_abbreviation_number::time::*;
     /// let seconds=Time::from_second(34_536_000);
     /// assert_eq!(1,seconds.get_year());
     /// assert_eq!(12,seconds.get_month());
@@ -46,10 +46,10 @@ impl Time {
         Second(sec)
     }
 
-        ///  An Extension For Time.
+    ///  An Extension For Time.
     /// # Example
     /// ```
-   /// use rs_abbreviation_number::time::*;
+    /// use rs_abbreviation_number::time::*;
     /// let minuts=Time::from_minute(575_600);
     /// assert_eq!(1,minuts.get_year());
     /// assert_eq!(12,minuts.get_month());
@@ -57,10 +57,10 @@ impl Time {
     pub fn from_minute(minute: u64) -> Minute {
         Minute(minute * MINUTE_AS_SECOND)
     }
-        ///  An Extension For Time.
+    ///  An Extension For Time.
     /// # Example
     /// ```
-   /// use rs_abbreviation_number::time::*;
+    /// use rs_abbreviation_number::time::*;
     /// let hours=Time::from_hour(9593);
     /// assert_eq!(1,hours.get_year());
     /// assert_eq!(12,hours.get_month());
@@ -73,7 +73,7 @@ impl Time {
     ///  An Extension For Time.
     /// # Example
     /// ```
-   /// use rs_abbreviation_number::time::*;
+    /// use rs_abbreviation_number::time::*;
     /// let days=Time::from_day(399);
     /// assert_eq!(1,days.get_year());
     /// assert_eq!(12,days.get_month());
@@ -83,10 +83,10 @@ impl Time {
         Day(day * DAY_AS_SECOND)
     }
 
-        ///  An Extension For Time.
+    ///  An Extension For Time.
     /// # Example
     /// ```
-   /// use rs_abbreviation_number::time::*;
+    /// use rs_abbreviation_number::time::*;
     /// let month=Time::from_month(15);
     /// assert_eq!(1,month.get_year());
     /// assert_eq!(12,month.get_month());
@@ -98,7 +98,7 @@ impl Time {
     ///  An Extension For Time.
     /// # Example
     /// ```
-   /// use rs_abbreviation_number::time::*;
+    /// use rs_abbreviation_number::time::*;
     /// let years=Time::from_year(8);
     /// assert_eq!(8,years.get_year());
     /// assert_eq!(96,years.get_month());
